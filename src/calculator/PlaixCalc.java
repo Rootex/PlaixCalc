@@ -307,7 +307,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"9");
-            signChange=false;
+          //  signChange=false;
         }
     }//GEN-LAST:event_NineActionPerformed
 
@@ -319,7 +319,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"1");
-            signChange=false;
+           // signChange=false;
         }
     }//GEN-LAST:event_OneActionPerformed
 
@@ -331,7 +331,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"2");
-            signChange=false;
+           // signChange=false;
         }
     }//GEN-LAST:event_TwoActionPerformed
 
@@ -343,7 +343,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"3");
-            signChange=false;
+            //signChange=false;
         }
     }//GEN-LAST:event_ThreeActionPerformed
 
@@ -367,7 +367,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"5");
-            signChange=false;
+           // signChange=false;
         }
     }//GEN-LAST:event_FiveActionPerformed
 
@@ -379,7 +379,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"6");
-            signChange=false;
+           // signChange=false;
         }
     }//GEN-LAST:event_SixActionPerformed
 
@@ -391,7 +391,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"7");
-            signChange=false;
+            //signChange=false;
         }
     }//GEN-LAST:event_SevenActionPerformed
 
@@ -403,7 +403,7 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"8");
-            signChange=false;
+            //signChange=false;
         }
     }//GEN-LAST:event_EightActionPerformed
 
@@ -415,12 +415,13 @@ public class PlaixCalc extends javax.swing.JFrame {
         }
         else {
             TextField.setText(TextField.getText()+"0");
-            signChange=false;
+            //signChange=false;
         }
     }//GEN-LAST:event_ZeroActionPerformed
 
     private void EqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EqualsActionPerformed
         // TODO add your handling code here:
+        signChange=false;
         try{
             String text = TextField.getText();
             String firstNum, secondNum;
@@ -434,9 +435,9 @@ public class PlaixCalc extends javax.swing.JFrame {
                 num2 = (long)(Double.parseDouble(secondNum));
 
                 TextField.setText(Long.toString(num1+num2));
-            }else if(text.contains("-")){
-                firstNum = text.substring(0,text.indexOf("-"));
-                secondNum = text.substring(text.indexOf("-")+1, text.length());
+            }else if(text.contains("-") && !text.contains("/") && !text.contains("x")){
+                firstNum = text.substring(0,text.lastIndexOf("-"));
+                secondNum = text.substring(text.lastIndexOf("-")+1, text.length());
                 num1 = (long)(Double.parseDouble(firstNum));
                 num2 = (long)(Double.parseDouble(secondNum));
                 TextField.setText(Long.toString(num1-num2));
@@ -455,8 +456,10 @@ public class PlaixCalc extends javax.swing.JFrame {
                 int resultInt = (int)result;
                 if(result/resultInt == 1){
                     TextField.setText(Integer.toString(resultInt));
+                } else if(num3 == 0){
+                    TextField.setText("0");    
                 }else{
-                    TextField.setText(Float.toString(result));
+                    TextField.setText(Float.toString(result));    
                 }
             }else{}
             equalPress=true;
